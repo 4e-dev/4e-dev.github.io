@@ -1,4 +1,4 @@
-baseURL = 'http://localhost:1313/'
+baseURL = "https://4e-dev.github.io/"
 locale = 'en-us'
 title = 'Bao Bui'
 theme = 'hugo-xmin'
