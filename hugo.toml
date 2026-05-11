@@ -1,0 +1,21 @@
+baseURL = 'http://localhost:1313/'
+locale = 'en-us'
+title = 'Bao Bui'
+theme = 'hugo-xmin'
+
+[params]
+description = "Website built with Hugo and theming by Yihui Xie"
+footer = "&copy; Bao Bui 2026 -- {Year}"
+
+[markup.highlight]
+codeFences = false
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+enable = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [ [ "\\[", "\\]" ], [ "$$", "$$" ] ]
+inline = [ [ "\\(", "\\)" ] ]
