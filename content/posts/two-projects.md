@@ -24,4 +24,5 @@ cool stuff like animation.
 # A promise to myself
 I want to update my blog post often. When I interviewed with SpaceX, an interviewer asked me
 if I ever show off any of my projects, publically. It was an idea that I'd never really given weight.
-I think it's a huge reason why finding jobs is so difficult. Obviously, I didn't get the job.
+So I told him, "No." and it stuck with me throughout the entire interview.
+I actually think it's a huge reason why finding jobs is so difficult. Anyways, I didn't get that job.
