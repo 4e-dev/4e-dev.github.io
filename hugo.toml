@@ -5,7 +5,7 @@ theme = 'hugo-xmin'
 
 [params]
 description = "Website built with Hugo and theming by Yihui Xie"
-footer = "&copy; Bao Bui 2026 -- {Year}"
+footer = "&copy; Bao Bui 2026 -- Present"
 
 [markup.highlight]
 codeFences = false
