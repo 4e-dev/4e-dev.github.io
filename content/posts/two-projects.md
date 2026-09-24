@@ -20,9 +20,3 @@ opengl renderer was built off of [LearnOpenGL](https://learnopengl.com/), which 
 also use to help guide me again for my second renderer. This time, I want to add a bunch
 more features, including a proper UI for inserting 3D models, audio, and eventually
 cool stuff like animation.
-
-# A promise to myself
-I want to update my blog post often. When I interviewed with SpaceX, an interviewer asked me
-if I ever show off any of my projects, publically. It was an idea that I'd never really given weight.
-So I told him, "No." and it stuck with me throughout the entire interview.
-I actually think it's a huge reason why finding jobs is so difficult. Anyways, I didn't get that job.
