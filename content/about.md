@@ -8,8 +8,7 @@ I really love games! After leaving my first full-time job, I decided to
 spend my time experimenting with c++, graphics, game development, and kinda
 whatever else happened to catch my interest.
 
-I love learning about fundamentals and, of course, building things, even
-though I don't always know what I'm doing...
+I love learning about fundamentals and, of course, building things.
 
 My long term goal is to become an independent game developer and make
 games of my own. I'm currently working on a small project in Godot while
