@@ -21,7 +21,7 @@ Instead of waiting for a load to finish drying...
 
 ![good pipelining example](./assets/good-pipeline.gif)
 
-You should run another washing load at the same time! Who knew
+You can run another washing load at the same time! Who knew
 computers could teach you so much about being an adult?
 
 # Equivalent operations?
@@ -41,22 +41,22 @@ double d = a * (1.0 / b);
 ```
 
 These equations are mathematically equivalent,
-so they should produce the same result, right?
-Printing these values out, that *seems* to be the case.
+so they should produce the same result.
+And by printing these values out, that *seems* to be the case.
 
 ```bash
 1.405405405405405 # 'c'
 1.405405405405405 # 'd'
 ```
 
-But, something really interesting happens when you compare them together:
+But, something *unexpected* happens when you compare them:
 
 ```bash
 # std::cout << (c == d ? "TRUE" : "FALSE");
 FALSE
 ```
 
-Despite what you see in stdout, the values are *not* the same.
+Despite what you see in the standard output, the values are actually different!
 If you increase the display precision, you'll notice something interesting.
 
 ```bash
@@ -91,7 +91,9 @@ public:
 ```
 
 As you can see, I represent vectors as fixed-size arrays. Are there better data structures?
-idk, probably.
+probably, idk.
+
+```
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⠶⠛⠉⠉⠉⠉⢟⡒⠲⠤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠋⠁⠀⠀⠀⠀⠀⣴⣟⣹⣗⡀⠈⠙⢶⡄⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⢀⠀⣀⣀⣀⡀⠀⠀
@@ -111,6 +113,7 @@ idk, probably.
 ⠀⠀⠀⠀⠀⠀⠀⠘⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⢻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠸⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡟⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
+```
 
 But, it's definitely the easiest one to use!
 
@@ -137,11 +140,11 @@ Vec<N> operator/(const Vec3& v, const double scalar) {
 ```
 
 I wanted to be clever by reusing the multiplication operation in my division
-implementation. We'll find out soon why this is problematic.
+implementation. We'll find out soon why this was problematic.
 
 ## The test suite
-For every new operation linear algebra operation, I write a corresponding test case.
-This one for vector-scalar division.
+For every new operation linear algebra operation, I wrote a corresponding test case.
+This one is for vector-scalar division.
 
 ```cpp
 template <size_t N>
@@ -176,14 +179,16 @@ TEST FAILED: division
 Failed 1 out of 15 cases
 ```
 
+The current implementation fails.
+
 ## A note on testing
 Running the same test binary yields different results. I believe that it's because
 of the randomized values I generated for each test case.
 Luckily enough, on the few test cases I ran, the division test case was flagged.
-A more robust test suite would re-run the test case an arbitrary number of times.
+A more robust test suite would likely re-run the test case an arbitrary number of times.
 
 ## Analyzing the result
-At this point, I had a two ideas of what to investigate:
+At this point, I had two ideas of what to investigate:
 1. The test case itself
 2. The division implementation
 
@@ -204,7 +209,7 @@ An epsilon guard is a fancy word for a very small value. It's the error-toleranc
 between two floats.
 
 For example, when you use the equality-operator, it has an error tolerance of zero, or no tolerance.
-But floats have a little bit of error in them. This leads to us using an epsilon guard.
+But floats may have a little bit of difference. This leads to us using an epsilon guard.
 
 To compare values with the epsilon guard, you take the difference of the compared floats. If
 the difference is less than the epsilon guard, then it passes the fault tolerance. Otherwise,
@@ -218,8 +223,7 @@ So at the time, I did research and found out that some developers use an epsilon
 of float operations. IIRC some developers call it a fuzzy-match, since the equality was
 *good enough*.
 
-Honestly, I never really questioned the idea of using an epsilon guard. As a matter of fact,
-I *truly* believed that floats were these unreliable primitives, but I decided to challenge this idea.
+But, given my use case, I wanted to make sure my math library had *zero* faults.
 This led to me learning more about how computers represent real numbers.
 
 # Understanding floating point arithmetic
@@ -245,7 +249,7 @@ Take *1/3* (one divided by three) for example, its decimal representation
 is 0.33333333... you get the point. Computers only have a limited number of bits
 to represent a number. Since computers can't represent every real number exactly,
 the final value gets rounded. Every mathematical operation on a float will introduce a
-rounding error that accumulates. leading to unexpected results and hard to catch errors.
+rounding error that accumulates, leading to unexpected results and hard to catch errors.
 
 ### How floating point numbers are represented
 ![three components of a float](./assets/IEEE-Floating-Point-Standard-1024x491.png)
@@ -290,7 +294,11 @@ reminds me of how standardized and deterministic computers are. I wouldn't fault
 making mistakes revolving around floats, though. In fact, for something that *seems* simple, the development
 for floating points is very complex.
 
-This may be a surprise, but I don't usually test code (˚0˚)!! My excuse is coming from a frontend development background.
+Another thing that I learned, testing is important! I mean, *naturally*, this is a no-brainer.
+
+...
+
+Sooooo, this may be a surprise, but I don't usually test code (˚0˚)!!
 However, math **needs** to be correct and, without a test suite, bugs like this would've been really hard to track down.
 
 And lastly, think *deeply* about what you're trying to solve.
